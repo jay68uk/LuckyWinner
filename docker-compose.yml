@@ -1,0 +1,6 @@
+﻿services:
+  luckywinner.app:
+    image: luckywinner.app
+    build:
+      context: .
+      dockerfile: LuckyWinner.App/Dockerfile
