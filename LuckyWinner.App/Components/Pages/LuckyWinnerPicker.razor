@@ -1,0 +1,32 @@
+﻿@page "/lucky_winner_picker"
+
+<h3>Lucky Winner</h3>
+
+<EditForm EditContext="new EditContext(_newEntry)" OnSubmit="AddEntry" FormName="AddName">
+    <div class="form-group">
+        <label for="nameInput">Enter Name/Description:</label>
+        <input type="text" id="nameInput" @bind="_newEntry" class="form-control" placeholder="Enter a name or description" />
+    </div>
+
+    <input type="submit" class="btn btn-primary" value="Add Entry"/>
+</EditForm>
+<h4>Entries:</h4>
+<ul>
+    @foreach (var entry in _entries)
+    {
+    <li>@entry</li>
+    }
+</ul>
+
+@code {
+    private string _newEntry = string.Empty;
+    private List<string> _entries = [];
+
+    private void AddEntry()
+    {
+        if (string.IsNullOrWhiteSpace(_newEntry)) return;
+        _entries.Add(_newEntry);
+        _newEntry = string.Empty; // Clear the input field
+    }
+
+}
